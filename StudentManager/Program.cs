@@ -21,7 +21,23 @@ namespace StudentManager
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FrmMain());
+            //显示登录窗体
+            FrmUserLogin frmUserLogin = new FrmUserLogin();
+            //拿到登录窗体返回值
+            DialogResult result = frmUserLogin.ShowDialog();
+            //判断返回值，从而确定是否登录成功
+            if (result==DialogResult.OK)
+            {
+                //启动运行主窗体
+                Application.Run(new FrmMain());
+            }
+            else
+            {
+                //关闭所有程序
+                Application.Exit();
+            }
+
+           
 
         }
 
