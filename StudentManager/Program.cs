@@ -5,12 +5,15 @@ using System.Windows.Forms;
 
 
 using System.Diagnostics;
-
+using Models;
 
 namespace StudentManager
 {
     static class Program
     {
+        //生成一个变量，用来存用户名信息
+        public static Admin currentAdmin = null;
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>

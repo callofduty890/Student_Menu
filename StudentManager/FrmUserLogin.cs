@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+//引用自己写的动态链接库
 using Models;
+using DAL;
 
 namespace StudentManager
 {
@@ -21,7 +23,7 @@ namespace StudentManager
         //登录
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            #region 数据验证-输入账号是否按照格式
+            #region 1. 数据验证-输入账号是否按照格式
             //检查 账号-密码 是否有输入内容
             if (this.txtLoginId.Text.Trim().Length==0)
             {
@@ -39,14 +41,31 @@ namespace StudentManager
             }
             #endregion
 
-            #region 封装接受到的数据：登录账号/登录密码
+            #region 2. 封装接受到的数据：登录账号/登录密码
+            Admin objAdmin = new Admin()
+            {
+                LoginId = Convert.ToInt32(this.txtLoginId.Text.Trim()),
+                LoginPwd = this.txtLoginPwd.Text.Trim()
+            };
+            #endregion
 
+            #region 3.将数据对象送到数据处理层，接收返回数据
+            Program.currentAdmin = new AdminService().AdminLogin(objAdmin);
+            if (Program.currentAdmin!=null)
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("用户名或密码错误!", "提示信息");
+            }
             #endregion
         }
         //关闭
         private void btnClose_Click(object sender, EventArgs e)
         {
-           
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }
