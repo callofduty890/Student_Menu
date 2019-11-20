@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Common;
 using DAL;
 using Models;
 
@@ -33,14 +34,14 @@ namespace StudentManager
         {
             #region 验证数据
             //姓名不能为空
-            if (this.txtStudentName.Text.Trim().Length==0)
+            if (this.txtStudentName.Text.Trim().Length == 0)
             {
                 MessageBox.Show("学生姓名不能为空!", "提示信息");
                 this.txtStudentName.Focus();
                 return;
             }
             //考勤卡号
-            if (this.txtCardNo.Text.Trim().Length==0)
+            if (this.txtCardNo.Text.Trim().Length == 0)
             {
                 MessageBox.Show("学生考勤卡号不能为空!", "提示信息");
                 this.txtStudentName.Focus();
@@ -53,14 +54,14 @@ namespace StudentManager
                 return;
             }
             //班级
-            if (this.cboClassName.SelectedIndex==-1)
+            if (this.cboClassName.SelectedIndex == -1)
             {
                 MessageBox.Show("请选择班级!", "提示信息");
                 return;
             }
             //验证年龄
             int age = DateTime.Now.Year - Convert.ToDateTime(this.dtpBirthday.Text).Year;
-            if (age>45 && age<18)
+            if (age > 45 && age < 18)
             {
                 MessageBox.Show("年龄必须在18-45之间!", "提示信息");
                 return;
@@ -96,6 +97,23 @@ namespace StudentManager
                 this.txtCardNo.SelectAll();
                 return;
             }
+            #endregion
+
+            #region 实例化学生信息
+            Student objstudent = new Student()
+            {
+                StudentName = this.txtStudentName.Text.Trim(),
+                Gender = this.rdoMale.Checked ? "男" : "女",
+                Birthday = Convert.ToDateTime(this.dtpBirthday.Text),
+                StudentIdNo = this.txtStudentIdNo.Text.Trim(),
+                PhoneNumber = this.txtPhoneNumber.Text.Trim(),
+                ClassName = this.cboClassName.Text,
+                StudentAddress = this.txtAddress.Text.Trim() == "" ? "地址不详" : this.txtAddress.Text.Trim(),
+                CardNo = this.txtCardNo.Text.Trim(),
+                ClassId = Convert.ToInt32(this.cboClassName.SelectedValue),//获取选择班级对应classId
+                Age = DateTime.Now.Year - Convert.ToDateTime(this.dtpBirthday.Text).Year,
+                StuImage = this.pbStu.Image != null ? new SerializeObjectToString().SerializeObject(this.pbStu.Image) : ""
+            };
             #endregion
         }
         //关闭窗体
