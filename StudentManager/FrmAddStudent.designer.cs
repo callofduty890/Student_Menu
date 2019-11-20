@@ -91,6 +91,7 @@
             this.txtStudentName.Name = "txtStudentName";
             this.txtStudentName.Size = new System.Drawing.Size(142, 21);
             this.txtStudentName.TabIndex = 0;
+            this.txtStudentName.Text = "助教";
             // 
             // label2
             // 
@@ -126,6 +127,7 @@
             this.txtStudentIdNo.Name = "txtStudentIdNo";
             this.txtStudentIdNo.Size = new System.Drawing.Size(276, 21);
             this.txtStudentIdNo.TabIndex = 5;
+            this.txtStudentIdNo.Text = "235407195106112745";
             // 
             // label5
             // 
@@ -143,6 +145,7 @@
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(167, 21);
             this.txtPhoneNumber.TabIndex = 7;
+            this.txtPhoneNumber.Text = "123-456";
             // 
             // label6
             // 
@@ -164,6 +167,7 @@
             // rdoMale
             // 
             this.rdoMale.AutoSize = true;
+            this.rdoMale.Checked = true;
             this.rdoMale.Location = new System.Drawing.Point(300, 34);
             this.rdoMale.Name = "rdoMale";
             this.rdoMale.Size = new System.Drawing.Size(35, 16);
@@ -179,7 +183,6 @@
             this.rdoFemale.Name = "rdoFemale";
             this.rdoFemale.Size = new System.Drawing.Size(35, 16);
             this.rdoFemale.TabIndex = 2;
-            this.rdoFemale.TabStop = true;
             this.rdoFemale.Text = "女";
             this.rdoFemale.UseVisualStyleBackColor = true;
             // 
@@ -190,6 +193,7 @@
             this.dtpBirthday.Name = "dtpBirthday";
             this.dtpBirthday.Size = new System.Drawing.Size(143, 21);
             this.dtpBirthday.TabIndex = 3;
+            this.dtpBirthday.Value = new System.DateTime(1951, 10, 6, 0, 0, 0, 0);
             // 
             // label7
             // 
@@ -252,6 +256,7 @@
             this.txtCardNo.Name = "txtCardNo";
             this.txtCardNo.Size = new System.Drawing.Size(143, 21);
             this.txtCardNo.TabIndex = 6;
+            this.txtCardNo.Text = "0006254540";
             // 
             // pbStu
             // 

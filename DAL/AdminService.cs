@@ -12,6 +12,7 @@ namespace DAL
 {
     public class AdminService
     {
+      //登录
        public Admin AdminLogin(Admin objAdmin)
         {
             //构建查询语句
@@ -35,5 +36,7 @@ namespace DAL
 
             return objAdmin;
         }
+
+       
     }
 }

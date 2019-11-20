@@ -30,5 +30,19 @@ namespace DAL.Helper
             return objReader;
         }
 
+        //执行单一查询结果
+        public static object GetSingleResult(string sql)
+        {
+            //连接数据库
+            SqlConnection conn = new SqlConnection(connString);
+            //创建操作对象
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            //打开数据库
+            conn.Open();
+            //执行SQL语句
+            object result = cmd.ExecuteScalar();
+            //返回执行的结果
+            return result;
+        }
     }
 }

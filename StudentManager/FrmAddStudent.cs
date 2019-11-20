@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using DAL;
+using Models;
 
 
 
@@ -12,12 +14,19 @@ namespace StudentManager
 {
     public partial class FrmAddStudent : Form
     {
-
+        //实例化学生数据操作对象
+        StudentService objStudentService = new StudentService();
+        StudentClassService objStudentClass = new StudentClassService();
 
         public FrmAddStudent()
         {
             InitializeComponent();
-      
+            //初始化班级下拉框
+            this.cboClassName.DataSource = objStudentClass.GetAllClasses();
+            //调整对应的list
+            this.cboClassName.ValueMember = "ClassId";
+            this.cboClassName.DisplayMember = "ClassName";//设置下拉框文本
+            
         }
         //添加新学员
         private void btnAdd_Click(object sender, EventArgs e)
@@ -72,7 +81,21 @@ namespace StudentManager
                 return;
             }
             //验证身份证号码是否已经在数据库中出现
+            if (objStudentService.IsIdNoExisted(this.txtStudentIdNo.Text.Trim()))
+            {
+                MessageBox.Show("身份证不能与现有学员身份证号重复!", "验证提示");
+                this.txtStudentIdNo.Focus();
+                this.txtStudentIdNo.SelectAll();
+                return;
+            }
             //验证考勤卡号是否已经在数据库中出现
+            if (objStudentService.IsCardNoExisted(this.txtCardNo.Text.Trim()))
+            {
+                MessageBox.Show("当前考勤卡号已存在!", "验证提示");
+                this.txtCardNo.Focus();
+                this.txtCardNo.SelectAll();
+                return;
+            }
             #endregion
         }
         //关闭窗体
