@@ -18,6 +18,8 @@ namespace StudentManager
         //实例化学生数据操作对象
         StudentService objStudentService = new StudentService();
         StudentClassService objStudentClass = new StudentClassService();
+        //创建用以接受学生信息的List
+        List<Student> stuList = new List<Student>();
 
         public FrmAddStudent()
         {
@@ -27,7 +29,8 @@ namespace StudentManager
             //调整对应的list
             this.cboClassName.ValueMember = "ClassId";
             this.cboClassName.DisplayMember = "ClassName";//设置下拉框文本
-            
+            //禁止自动生成列
+            this.dgvStudentList.AutoGenerateColumns = false;
         }
         //添加新学员
         private void btnAdd_Click(object sender, EventArgs e)
@@ -115,6 +118,27 @@ namespace StudentManager
                 StuImage = this.pbStu.Image != null ? new SerializeObjectToString().SerializeObject(this.pbStu.Image) : ""
             };
             #endregion
+
+            #region 调用后台方法，添加数据
+            int studentId = objStudentService.AddStudent(objstudent);
+            if (studentId>1)
+            {
+                //同步显示添加的学员信息
+                objstudent.StudentId = studentId;
+                //添加输入的学生信息
+                this.stuList.Add(objstudent);
+                //将显示列表调整为空
+                this.dgvStudentList.DataSource = null;
+                //绑定数据
+                this.dgvStudentList.DataSource = this.stuList;
+            }
+            else
+            {
+                MessageBox.Show("插入数据失败");
+            }
+            #endregion
+
+
         }
         //关闭窗体
         private void btnClose_Click(object sender, EventArgs e)
