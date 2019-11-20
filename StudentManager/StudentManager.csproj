@@ -57,6 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DataGridViewStyle.cs" />
+    <Compile Include="Common\DataValidate.cs" />
+    <Compile Include="Common\SerializeObjectToString.cs" />
+    <Compile Include="Common\StringSecurity.cs" />
     <Compile Include="FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,9 +201,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
