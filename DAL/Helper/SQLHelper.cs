@@ -44,5 +44,20 @@ namespace DAL.Helper
             //返回执行的结果
             return result;
         }
+
+        //更新数据 
+        public static int Upadate(string sql)
+        {
+            //连接数据库
+            SqlConnection conn = new SqlConnection(connString);
+            //创建操作对象
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            //打开数据库
+            conn.Open();
+            //返回执行受影响的行数
+            return cmd.ExecuteNonQuery();
+        }
+
     }
+
 }

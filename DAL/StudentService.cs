@@ -140,5 +140,24 @@ namespace DAL
 
         }
 
+        //修改学生信息
+        public int ModifyStudent(Student objStudent)
+        {
+            //编写SQL语句 
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("update Students");
+            stringBuilder.Append(" set studentName='{0}',Gender='{1}',Birthday='{2}',StudentIdNo={3},Age={4},PhoneNumber='{5}',StudentAddress='{6}',CardNo='{7}',ClassId={8},StuImage='{9}'");
+            stringBuilder.Append(" where StudentId={10}");
+            //构建SQL语句
+            string sql = string.Format(stringBuilder.ToString(), objStudent.StudentName,
+                     objStudent.Gender, objStudent.Birthday.ToString("yyyy-MM-dd"),
+                    objStudent.StudentIdNo, objStudent.Age,
+                    objStudent.PhoneNumber, objStudent.StudentAddress, objStudent.CardNo,
+                    objStudent.ClassId, objStudent.StuImage, objStudent.StudentId);
+            //执行SQL语句
+            return Convert.ToInt32(SQLHelper.Upadate(sql));
+
+        }
+
     }
 }

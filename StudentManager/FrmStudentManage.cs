@@ -123,12 +123,13 @@ namespace StudentManager
             //显示修改学员信息窗口
             FrmEditStudent objFrmEditStudent = new FrmEditStudent(objstudent);
             objFrmEditStudent.ShowDialog();
-
+            //同步显示刷新
+            btnQuery_Click(null, null);
         }
         //删除学员对象
         private void btnDel_Click(object sender, EventArgs e)
         {
-           
+
         }
         //姓名降序
         private void btnNameDESC_Click(object sender, EventArgs e)
