@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DAL.Helper;
 using Models;
+using System.Data.SqlClient;
 
 namespace DAL
 {
@@ -70,5 +71,37 @@ namespace DAL
             return Convert.ToInt32(SQLHelper.GetSingleResult(sql));
         }
 
+        //根据班级查询学员信息
+        public List<Student> GetStudentByClass(string className)
+        {
+            //形成SQL查询语句
+            string sql = "select StudentId,StudentName,Gender,PhoneNumber,StudentIdNo,Birthday,ClassName from Students ";
+            sql += "inner join StudentClass on Students.ClassId=StudentClass.ClassId";
+            sql += " where ClassName='{0}'";
+            sql = string.Format(sql, className);
+
+            //执行查询语句
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            //接受返回结果
+            List<Student> list = new List<Student>();
+            //循环接收
+            while (objReader.Read())
+            {
+                list.Add(new Student
+                {
+                    StudentId = Convert.ToInt32(objReader["StudentId"]),
+                    StudentName = objReader["StudentName"].ToString(),
+                    Gender = objReader["Gender"].ToString(),
+                    PhoneNumber = objReader["PhoneNumber"].ToString(),
+                    Birthday = Convert.ToDateTime(objReader["Birthday"]),
+                    StudentIdNo = objReader["StudentIdNo"].ToString(),
+                    ClassName = objReader["ClassName"].ToString()
+                });
+            }
+            objReader.Close();
+            return list;
+
+
+        }
     }
 }

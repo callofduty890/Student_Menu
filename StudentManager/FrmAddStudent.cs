@@ -17,6 +17,7 @@ namespace StudentManager
     {
         //实例化学生数据操作对象
         StudentService objStudentService = new StudentService();
+        //实例化学生班级操作对象
         StudentClassService objStudentClass = new StudentClassService();
         //创建用以接受学生信息的List
         List<Student> stuList = new List<Student>();
