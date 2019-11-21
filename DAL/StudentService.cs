@@ -159,5 +159,13 @@ namespace DAL
 
         }
 
+        //删除学生信息
+        public int DelectStudentById(string studentId)
+        {
+            //构建SQL语句
+            string sql = "delete from Students where StudentId=" + studentId;
+            //执行SQL语句
+            return SQLHelper.Upadate(sql);
+        }
     }
 }

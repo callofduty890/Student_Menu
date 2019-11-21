@@ -129,7 +129,40 @@ namespace StudentManager
         //删除学员对象
         private void btnDel_Click(object sender, EventArgs e)
         {
-
+            #region 验证数据
+            //索引为0没有任何要修改的学员信息
+            if (this.dgvStudentList.RowCount == 0)
+            {
+                MessageBox.Show("没有任何需要删除的学员信息！", "提示");
+                return;
+            }
+            //没有选中
+            if (this.dgvStudentList.CurrentRow == null)
+            {
+                MessageBox.Show("请选中需要删除的学员信息！", "提示");
+                return;
+            }
+            //确认是否真的删除
+            DialogResult result = MessageBox.Show("确认要删除吗?", "删除确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result==DialogResult.Cancel)
+            {
+                return;
+            }
+            #endregion
+            //获取对应学号
+            string studentId = this.dgvStudentList.CurrentRow.Cells["StudentId"].Value.ToString();
+            //执行删除操作
+            if (objstudentService.DelectStudentById(studentId) == 1)
+            {
+                //同步刷新一下
+                btnQuery_Click(null, null);
+            }
+            else
+            {
+                MessageBox.Show("删除失败", "提示");
+            }
+            ;
+            
         }
         //姓名降序
         private void btnNameDESC_Click(object sender, EventArgs e)
