@@ -18,7 +18,8 @@ namespace StudentManager
         StudentClassService objStudentClass = new StudentClassService();
         //实例化学生的操作对象
         StudentService objstudentService = new StudentService();
-       
+        //创建list对象
+        List<Student> list = null;
 
 
         public FrmStudentManage()
@@ -167,8 +168,26 @@ namespace StudentManager
         //姓名降序
         private void btnNameDESC_Click(object sender, EventArgs e)
         {
-         
+            //数据验证
+            if (this.dgvStudentList.RowCount==0)
+            {
+                return;
+            }
+            ////调用list排序
+            //list.Sort(new NameDESC());
+            ////刷新显示
+            //this.dgvStudentList.Refresh();
         }
+
+        class NameDESC:IComparer<Student>
+        {
+            public int Compare(Student x,Student y)
+            {
+                return y.StudentName.CompareTo(x.StudentName);
+            }
+        }
+
+
         //学号降序
         private void btnStuIdDESC_Click(object sender, EventArgs e)
         {

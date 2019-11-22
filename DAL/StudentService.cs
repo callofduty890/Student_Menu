@@ -140,6 +140,40 @@ namespace DAL
 
         }
 
+        //通过学生考勤卡号
+        public Student GetStudentByCardNo(string CardNo)
+        {
+            //构建SQL语句
+            string sql = "select StudentId,StudentName,Gender,PhoneNumber,StudentIdNo,CardNo,Birthday,StudentAddress,ClassName,StuImage from Students ";
+            sql += "inner join StudentClass on Students.ClassId=StudentClass.ClassId";
+            sql += " where CardNo='{0}'";
+            sql = string.Format(sql, CardNo);
+
+            //执行查询语句
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            //接受返回结果
+            Student objStudent = null;
+            //循环接收
+            while (objReader.Read())
+            {
+                objStudent = new Student()
+                {
+                    StudentId = Convert.ToInt32(objReader["StudentId"]),
+                    StudentName = objReader["StudentName"].ToString(),
+                    Gender = objReader["Gender"].ToString(),
+                    PhoneNumber = objReader["PhoneNumber"].ToString(),
+                    Birthday = Convert.ToDateTime(objReader["Birthday"]),
+                    StudentIdNo = objReader["StudentIdNo"].ToString(),
+                    ClassName = objReader["ClassName"].ToString(),
+                    StudentAddress = objReader["StudentAddress"].ToString(),
+                    CardNo = objReader["CardNo"].ToString(),
+                    StuImage = objReader["StuImage"] == null ? "" : objReader["StuImage"].ToString()
+                };
+            }
+            objReader.Close();
+            return objStudent;
+        }
+
         //修改学生信息
         public int ModifyStudent(Student objStudent)
         {

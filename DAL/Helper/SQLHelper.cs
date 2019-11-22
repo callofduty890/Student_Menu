@@ -58,6 +58,13 @@ namespace DAL.Helper
             return cmd.ExecuteNonQuery();
         }
 
+        //获取系统时间-数据库 原因:电脑本地时间有可能尚未同步北京时间
+        public static DateTime GetServerTime()
+        {
+            string sql = "select getdate()";
+            return Convert.ToDateTime(SQLHelper.GetSingleResult(sql));
+        }
+
     }
 
 }
