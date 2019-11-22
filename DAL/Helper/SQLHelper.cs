@@ -65,6 +65,26 @@ namespace DAL.Helper
             return Convert.ToDateTime(SQLHelper.GetSingleResult(sql));
         }
 
+        //执行返回数据集以DataSet的形式
+        public static DataSet GetDataSet(string sql)
+        {
+            //连接数据库
+            SqlConnection conn = new SqlConnection(connString);
+            //创建操作对象
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            //创建数据适配器
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //打开数据库
+            conn.Open();
+            //创建内存表用以存数据
+            DataSet ds = new DataSet();
+            //填充数据
+            da.Fill(ds);
+            //返回填充数据
+            return ds;
+
+        }
+
     }
 
 }

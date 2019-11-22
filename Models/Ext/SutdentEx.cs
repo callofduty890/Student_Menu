@@ -7,8 +7,12 @@ namespace Models.Ext
 {
     public class SutdentEx:Student
     {
-        //考勤时间
-        public DateTime DTime { get; set; }
+        public string ClassName { get; set; }
+        public string CSharp { get; set; }
+        public string SQLServerDB { get; set; }
+        public DateTime DTime { get; set; }//签到时间
+
+        public bool cc { get; set; }
 
     }
 }

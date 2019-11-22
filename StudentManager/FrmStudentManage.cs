@@ -12,6 +12,8 @@ using DAL;
 
 namespace StudentManager
 {
+
+
     public partial class FrmStudentManage : Form
     {
         //实例化学生班级操作对象
@@ -20,7 +22,6 @@ namespace StudentManager
         StudentService objstudentService = new StudentService();
         //创建list对象
         List<Student> list = null;
-
 
         public FrmStudentManage()
         {
@@ -165,6 +166,9 @@ namespace StudentManager
             ;
             
         }
+
+
+
         //姓名降序
         private void btnNameDESC_Click(object sender, EventArgs e)
         {
@@ -173,18 +177,11 @@ namespace StudentManager
             {
                 return;
             }
-            ////调用list排序
-            //list.Sort(new NameDESC());
-            ////刷新显示
-            //this.dgvStudentList.Refresh();
-        }
 
-        class NameDESC:IComparer<Student>
-        {
-            public int Compare(Student x,Student y)
-            {
-                return y.StudentName.CompareTo(x.StudentName);
-            }
+            //调用list排序
+            list.Sort(new NameDESC());
+            //刷新显示
+            this.dgvStudentList.Refresh();
         }
 
 
@@ -216,5 +213,20 @@ namespace StudentManager
         }
     }
 
-   
+    #region 实现排序
+    class NameDESC : IComparer<Student>
+    {
+        public int Compare(Student x, Student y)
+        {
+            return y.StudentName.CompareTo(x.StudentName);
+        }
+    }
+    class StuIdDESC : IComparer<Student>
+    {
+        public int Compare(Student x, Student y)
+        {
+            return y.StudentId.CompareTo(x.StudentId);
+        }
+    }
+    #endregion
 }
