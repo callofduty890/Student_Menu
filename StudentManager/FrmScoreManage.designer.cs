@@ -34,6 +34,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmScoreManage));
             this.dgvScoreList = new System.Windows.Forms.DataGridView();
+            this.StudentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CSharp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SQLServerDB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cboClass = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbStat = new System.Windows.Forms.GroupBox();
@@ -50,12 +56,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.StudentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CSharp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SQLServerDB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScoreList)).BeginInit();
             this.gbStat.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -110,6 +110,50 @@
             this.dgvScoreList.TabIndex = 7;
             this.dgvScoreList.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvScoreList_CurrentCellDirtyStateChanged);
             this.dgvScoreList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvScoreList_RowPostPaint);
+            // 
+            // StudentId
+            // 
+            this.StudentId.DataPropertyName = "StudentId";
+            this.StudentId.HeaderText = "学号";
+            this.StudentId.Name = "StudentId";
+            this.StudentId.ReadOnly = true;
+            this.StudentId.Width = 150;
+            // 
+            // StudentName
+            // 
+            this.StudentName.DataPropertyName = "StudentName";
+            this.StudentName.HeaderText = "姓名";
+            this.StudentName.Name = "StudentName";
+            this.StudentName.ReadOnly = true;
+            // 
+            // Gender
+            // 
+            this.Gender.DataPropertyName = "Gender";
+            this.Gender.HeaderText = "性别";
+            this.Gender.Name = "Gender";
+            this.Gender.ReadOnly = true;
+            // 
+            // ClassName
+            // 
+            this.ClassName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ClassName.DataPropertyName = "ClassName";
+            this.ClassName.HeaderText = "班级";
+            this.ClassName.Name = "ClassName";
+            this.ClassName.ReadOnly = true;
+            // 
+            // CSharp
+            // 
+            this.CSharp.DataPropertyName = "CSharp";
+            this.CSharp.HeaderText = "C#成绩";
+            this.CSharp.Name = "CSharp";
+            this.CSharp.ReadOnly = true;
+            // 
+            // SQLServerDB
+            // 
+            this.SQLServerDB.DataPropertyName = "SQLServerDB";
+            this.SQLServerDB.HeaderText = "DB成绩";
+            this.SQLServerDB.Name = "SQLServerDB";
+            this.SQLServerDB.ReadOnly = true;
             // 
             // cboClass
             // 
@@ -279,50 +323,6 @@
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "缺考人员列表";
-            // 
-            // StudentId
-            // 
-            this.StudentId.DataPropertyName = "StudentId";
-            this.StudentId.HeaderText = "学号";
-            this.StudentId.Name = "StudentId";
-            this.StudentId.ReadOnly = true;
-            this.StudentId.Width = 150;
-            // 
-            // StudentName
-            // 
-            this.StudentName.DataPropertyName = "StudentName";
-            this.StudentName.HeaderText = "姓名";
-            this.StudentName.Name = "StudentName";
-            this.StudentName.ReadOnly = true;
-            // 
-            // Gender
-            // 
-            this.Gender.DataPropertyName = "Gender";
-            this.Gender.HeaderText = "性别";
-            this.Gender.Name = "Gender";
-            this.Gender.ReadOnly = true;
-            // 
-            // ClassName
-            // 
-            this.ClassName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ClassName.DataPropertyName = "ClassName";
-            this.ClassName.HeaderText = "班级";
-            this.ClassName.Name = "ClassName";
-            this.ClassName.ReadOnly = true;
-            // 
-            // CSharp
-            // 
-            this.CSharp.DataPropertyName = "CSharp";
-            this.CSharp.HeaderText = "C#成绩";
-            this.CSharp.Name = "CSharp";
-            this.CSharp.ReadOnly = true;
-            // 
-            // SQLServerDB
-            // 
-            this.SQLServerDB.DataPropertyName = "SQLServerDB";
-            this.SQLServerDB.HeaderText = "DB成绩";
-            this.SQLServerDB.Name = "SQLServerDB";
-            this.SQLServerDB.ReadOnly = true;
             // 
             // FrmScoreManage
             // 
