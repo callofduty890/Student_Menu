@@ -5,6 +5,9 @@ using System.Text;
 //引用动态链接库
 using Models;
 using DAL.Helper;
+using Models.Ext;
+using System.Data.SqlClient;
+
 namespace DAL
 {
     public class AttendanceService
@@ -54,5 +57,42 @@ namespace DAL
 
         }
 
+        //根据时间和姓名进行考勤查询
+        public List<SutdentEx> GetStudentsByDate(DateTime beginDate,DateTime endDate,string StudentName)
+        {
+            //构建SQl语句
+            string sql = "select StudentId,StudentName,Gender,DTime,ClassName,Attendance.CardNo from Students";
+            sql += " inner join StudentClass on Students.ClassId=StudentClass.ClassId";
+            sql += " inner join Attendance on Students.CardNo=Attendance.CardNo";
+            sql += " where DTime between '{0}' and '{1}'";
+            sql = string.Format(sql, beginDate, endDate);
+            //判断是否加入了名字
+            if (StudentName!=null && StudentName.Length!=0)
+            {
+                sql+= string.Format(" and StudentName='{0}'", StudentName);
+            }
+            //排序
+            sql += "Order By DTime ASC";
+            //发起请求
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            //接受数据对象
+            List<SutdentEx> list = new List<SutdentEx>();
+            //循环接受数据
+            while (objReader.Read())
+            {
+                list.Add(new SutdentEx()
+                {
+                    StudentId=Convert.ToInt32(objReader["StudentId"]),
+                    StudentName = objReader["StudentName"].ToString(),
+                    Gender = objReader["Gender"].ToString(),
+                    CardNo = objReader["CardNo"].ToString(),
+                    ClassName = objReader["ClassName"].ToString(),
+                    DTime = Convert.ToDateTime(objReader["DTime"])
+                });
+            }
+            objReader.Close();
+            return list;
+
+        }
     }
 }
