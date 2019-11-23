@@ -85,6 +85,56 @@ namespace DAL.Helper
 
         }
 
+        //批量执行多条SQL语句
+        public static bool UpdateByTran(List<string> sqlList)
+        {
+            //连接数据库
+            SqlConnection conn = new SqlConnection(connString);
+            //创建操作对象
+            SqlCommand cmd = new SqlCommand();
+            //连接
+            cmd.Connection = conn;
+            //打开数据库
+            conn.Open();
+            try
+            {
+                //启动事务
+                cmd.Transaction = conn.BeginTransaction();
+                //循环执行SQL语句
+                foreach (string itemSql in sqlList)
+                {
+                    //执行 SQL 语句传入
+                    cmd.CommandText = itemSql;
+                    //执行SQL语句 返回受影响的行
+                    cmd.ExecuteNonQuery();
+                }
+                //关闭事务
+                cmd.Transaction.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //说明执行失败
+                if (cmd.Transaction !=null)
+                {
+                    //执行回滚操作，自动清除事务
+                    cmd.Transaction.Rollback();
+                }
+                throw new Exception("调用事务方法失败，错误提示:"+ex.Message);
+            }
+            finally
+            {
+                if (cmd.Transaction!=null)
+                {
+                    cmd.Transaction = null;
+                }
+                //关闭
+                conn.Close();
+            }
+
+
+        }
+
     }
 
 }

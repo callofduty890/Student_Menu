@@ -50,7 +50,22 @@ namespace StudentManager
         //保存到数据库
         private void btnSaveToDB_Click(object sender, EventArgs e)
         {
-
+            //验证数据
+            if (list==null||list.Count==0)
+            {
+                MessageBox.Show("目前没有要导入的数据!", "导入提示");
+            }
+            //导入数据
+            if (new ImportDataFromExcel().Import(this.list))
+            {
+                MessageBox.Show("数据导入成功!", "导入提示");
+                this.dgvStudentList.DataSource = null;
+                this.list.Clear();
+            }
+            else
+            {
+                MessageBox.Show("数据导入失败!", "导入提示");
+            }
         }
     }
 }
