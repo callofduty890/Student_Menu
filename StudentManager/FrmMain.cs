@@ -66,8 +66,8 @@ namespace StudentManager
         //批量导入学员信息
         private void tsmi_Import_Click(object sender, EventArgs e)
         {
-            //FrmImportData objForm = new FrmImportData();
-            //OpenForm(objForm);
+            FrmImportData objForm = new FrmImportData();
+            OpenForm(objForm);
         }
         private void btnImportStu_Click(object sender, EventArgs e)
         {
